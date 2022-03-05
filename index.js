@@ -1,12 +1,14 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generate = require('./utils/generateMarkdown');
+
 // TODO: Create an array of questions for user input
 const questions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    
+function writeToFile(generate, data) {
+    generateMarkdown();
 }
 
 // TODO: Create a function to initialize app
@@ -24,7 +26,7 @@ function init() {
     },
     {
       type: 'input',
-      message: 'Provide a step-by-step description on how to install your application:',
+      message: 'Provide instruction on how to install your application:',
       name: 'installation',
     },
     {
@@ -75,73 +77,76 @@ function init() {
       },
       {
         type: 'input',
-        message: 'List the main features for your application:',
-        name: 'features',
-      },
-      {
-        type: 'input',
         message: 'How can others contribute to your project?:',
         name: 'contribute',
       },
       {
         type: 'input',
+        message: 'Provide instructions on how to run your tests',
+        name: 'tests',
+      },
+      {
+        type: 'input',
         message: 'Provide an email address for contact:',
-        name: 'contact',
+        name: 'email',
+      },
+      {
+        type: 'input',
+        message: 'Provide your github username:',
+        name: 'github',
       },
   ])
 
   // const { type, message, name } = inquirer;
   .then((response) => {
-    const template = `# <Your-Project-Title>
+    const template = `
+    # ${response.title}
+  
+      ## Description (Motivation? The why? Solved Problems?)
+      
+        ${response.description}
+      
+      ## Table of Contents 
+      
+      - Installation
+      - Usage
+      - License
+      - Contributions
+      - Tests
+      - Questions
+      
+      ## Installation ${id = "installation"}
+  
+      ${response.installation}
+      
+      ## Usage
+      
+      To add a screenshot, create an assets/images folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+      
+         md
+          ![alt text](assets/images/screenshot.png)
+  
+          ${response.usage}
+         
+      
+      
+      ## License
+      ${response.license}
+      
+      ## How to Contribute
+      
+      ${response.contribute}
+      
+      ## Tests
+      
+      ${response.tests}
+      
+      ## Questions
+      
+        Please feel free to reach me at ${response.email} or view my github profile at "https://github.com/gwentzel26", 
+        my username is ${response.github}
+      `
 
-    ## Description (Motivation? The why? Solved Problems?)
-    
-      ${response.description}
-    
-    ## Table of Contents 
-    
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
-    
-    ## Installation
-
-    ${response.installation}
-    
-    ## Usage
-    
-    To add a screenshot, create an assets/images folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-    
-       md
-        ![alt text](assets/images/screenshot.png)
-       
-    
-    ## Credits
-    
-    
-    
-    ## License
-    
-    
-    ## Badges
-    
-    ![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-    
-    Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-    
-    ## Features
-    
-    If your project has a lot of features, list them here.
-    
-    ## How to Contribute
-    
-    If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-    
-    ## Tests
-    
-    Go the extra mile and write tests for your application. Then provide examples on how to run them here.`
-    
     console.log(response);
     fs.writeFile("template.md", template, (err) => {
         err ? console.error(err) : console.log("File has been written");
