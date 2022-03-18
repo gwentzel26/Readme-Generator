@@ -13,13 +13,13 @@ function renderLicenseSection(license) {}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   `
-  # ${response.title}
+# ${response.title}
 
-    ## Description (Motivation? The why? Solved Problems?)
+## Description (Motivation? The why? Solved Problems?)
     
       ${response.description}
     
-    ## Table of Contents 
+ ## Table of Contents 
     
       - Installation
       - Usage
@@ -28,51 +28,31 @@ function generateMarkdown(data) {
       - Tests
       - Questions
     
-    ## Installation
+## Installation
 
     ${response.installation}
     
-    ## Usage
-    
-    To add a screenshot, create an assets/images folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-    
-       md
+## Usage
+  
         ![alt text](assets/images/screenshot.png)
 
         ${response.usage}
        
-    
-
-    
-    ## License
+## License
     ${response.license}
     
 
-    ## How to Contribute
+## How to Contribute
     
     ${response.contribute}
     
-    ## Tests
+## Tests
     
     ${response.tests}
     
-    ## Questions
-    Please feel free to reach me at ${response.email} or view my github profile, my username is ${response.github}
-    `
-  return `# ${data.title}
-
-`;
-
-
-
-
-
-
-
-
+## Questions
+    Please feel free to reach me at ${response.email} or view my github profile, my username is ${response.github}`
+  return `# ${data.title}`;
 }
-
-
-
 
 module.exports = generateMarkdown;

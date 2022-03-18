@@ -1,4 +1,3 @@
-
 # **README Generator**
   
 ## **Description (Motivation? The why? Solved Problems?)**

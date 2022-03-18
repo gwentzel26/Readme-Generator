@@ -95,65 +95,76 @@ function init() {
         message: 'Provide your github username:',
         name: 'github',
       },
+      {
+        type: 'input',
+        message: 'Provide a link to the deployed application or a walkthrough video',
+        name: 'links1',
+      },
+      {
+        type: 'input',
+        message: 'Provide a link to the github repository',
+        name: 'links2',
+      },
   ])
 
   // const { type, message, name } = inquirer;
   .then((response) => {
-    const template = `
-    # ${response.title}
+const template = `
+# **${response.title}**
   
-      ## Description (Motivation? The why? Solved Problems?)
+## **Description (Motivation? The why? Solved Problems?)**
       
-        ${response.description}
+  ${response.description}
       
-      ## Table of Contents 
+## **Table of Contents** 
       
-      - Installation
-      - Usage
-      - License
-      - Contributions
-      - Tests
-      - Questions
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributions](#contributions)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  -[Links](#links)
       
-      ## Installation ${id = "installation"}
+## **Installation <a id="installation"></a>**
   
-      ${response.installation}
+  ${response.installation}
       
-      ## Usage
-      
-      To add a screenshot, create an assets/images folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-      
-         md
-          ![alt text](assets/images/screenshot.png)
+## **Usage <a id="usage"></a>** 
+  md
+  ![alt text](assets/images/screenshot.png)
   
-          ${response.usage}
+  ${response.usage}
          
       
       
-      ## License
-      ${response.license}
+## **License <a id="license"></a>**
+  ${response.license}
       
-      ## How to Contribute
+## **How to Contribute <a id="contributions"></a>**
       
-      ${response.contribute}
+  ${response.contribute}
       
-      ## Tests
+## **Tests <a id="tests"></a>**
       
-      ${response.tests}
+  ${response.tests}
       
-      ## Questions
+## **Questions <a id="questions"></a>**
       
-        Please feel free to reach me at ${response.email} or view my github profile at "https://github.com/gwentzel26", 
-        my username is ${response.github}
-      `
+  Please feel free to reach me at ${response.email} or view my github profile at "https://github.com/gwentzel26", 
+  my username is ${response.github}
 
-    console.log(response);
-    fs.writeFile("template.md", template, (err) => {
-        err ? console.error(err) : console.log("File has been written");
+## **Links <a id="links"></a>**
+  Walkthrough Video or Deployed Application: "${response.links1}"
+  Github Repository: "${response.links2}"
+`;
+  console.log(response);
+  fs.writeFile("template.md", template, (err) => {
+  err ? console.error(err) : console.log("File has been written");
     }
     )
 
-  }
+}
     
 
   );
